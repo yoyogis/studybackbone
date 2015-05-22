@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" > 
+ <script type="text/javascript" src="http://backbonejs.org/test/vendor/underscore.js"></script> 
+ <script type="text/javascript" src="http://backbonejs.org/backbone.js"></script> 
+ <title>Study backbone </title> 
+ <style type="text/css">
+	
+ </style>
+<script>
+    
+	
+	var AppRouter = Backbone.Router.extend({
+		routes:{
+			"posts/:dd":"getPost",  //在这里冒号后面必须有字符（可以是任意字符）. 冒号表示匹配斜杠后面一级url，如/posts/112, 如果url是/posts/112/222就不能被匹配
+			"post1/*e":"defaultRoute" //星号后面也必须有字符（可以是任意字符）。星号表示斜杠后面多级url都会被匹配，如/post1/112/222, '112/222' 会被传给响应函数
+		}
+	});
+	
+	var app_route = new AppRouter();
+	app_route.on('route:getPost',function(id){
+		console.log(id);
+	});
+	
+	app_route.on("route:defaultRoute",function(actions){
+		console.log(actions);
+	});
+	
+	Backbone.history.start();
+
+</script>
+</head>
+<body>
+	
+</body>
+</html>
+
